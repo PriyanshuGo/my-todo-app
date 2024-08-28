@@ -1,27 +1,35 @@
-"use client";
+'use client'
 import React, { useState } from "react";
 import "./index.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
-
-// Dynamically import React Quill to avoid SSR issues
 import ReactQuill from 'react-quill';
-
+import Card from "./Card"; // Import the Card component
 
 function Section() {
   const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [todos, setTodos] = useState([]); // To manage list of todos
 
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
   const handleDescriptionChange = (value) => {
     setDescription(value);
   };
 
-  const addTodo = () => {
 
-  }
+  const addTodo = () => {
+    if (title && description) {
+      setTodos([...todos, { title, description }]);
+      setTitle(""); 
+      setDescription(""); 
+    }
+  };
 
   const deleteTodo = () => {
-    
-  }
+    // Add your delete logic here
+  };
 
   return (
     <section className="section">
@@ -48,26 +56,33 @@ function Section() {
           </button>
         </div>
         <div className="sec1todo">
-          {/* Your card component or element can go here */}
-          
+          {todos.map((todo, index) => (
+            <Card key={index} title={todo.title} description={todo.description}  />
+          ))}
         </div>
       </div>
       <div className="sec2">
-      <div className="input">
-      <input type="text" id="topic" placeholder="New Additions" />
-        <button className="delete" onClick={deleteTodo}>
-        <Image
+        <div className="input">
+          <input
+            type="text"
+            id="topic"
+            placeholder="Add tittle"
+            value={title}
+            onChange={handleTitleChange}
+          />
+          <button className="delete" onClick={deleteTodo}>
+            <Image
               src="/delete.png"
               alt="delete Button"
               width={24}
               height={24}
             />
-        </button>
-      </div>
+          </button>
+        </div>
         <ReactQuill
           value={description}
           onChange={handleDescriptionChange}
-          placeholder="To stay representative of framework & new example apps."
+          placeholder="Write your description here."
         />
       </div>
     </section>
