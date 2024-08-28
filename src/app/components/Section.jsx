@@ -4,13 +4,13 @@ import "./index.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from 'react-quill';
-import Card from "./Card"; // Import the Card component
+import Card from "./Card"; 
 
 function Section() {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
-  const [todos, setTodos] = useState([]); // To manage list of todos
-  const [selectTodo, setSelectTodo] = useState(null);
+  const [todos, setTodos] = useState([]); 
+  const [selectTodo, setSelectTodo] = useState(null); 
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -22,7 +22,15 @@ function Section() {
 
   const addTodo = () => {
     if (title && description) {
-      setTodos([...todos, { title, description }]);
+      if (selectTodo !== null) {
+        const updatedTodos = todos.map((todo, index) =>
+          index == selectTodo ? { title, description } : todo
+        );
+        setTodos(updatedTodos);
+        setSelectTodo(null); 
+      } else {
+        setTodos([...todos, { title, description }]);
+      }
       setTitle(""); 
       setDescription(""); 
     }
@@ -31,9 +39,9 @@ function Section() {
   const deleteTodo = () => {
     if (selectTodo !== null) {
       setTodos(todos.filter((index) => index !== selectTodo));
-      setSelectTodo(null); // Clear selection after deletion
-      setTitle(""); // Clear title
-      setDescription(""); // Clear description
+      setSelectTodo(null); 
+      setTitle(""); 
+      setDescription(""); 
     }
   };
 
@@ -57,7 +65,7 @@ function Section() {
                 height={20}
               />
             </div>
-            <div className="sec1text">TODO</div>
+            <div className="sec1text">{selectTodo !== null ? 'Update' : 'Add'} </div>
           </button>
           <button className="sec1search">
             <Image
