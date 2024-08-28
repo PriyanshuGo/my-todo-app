@@ -15,11 +15,19 @@ function Section() {
     setDescription(value);
   };
 
+  const addTodo = () => {
+
+  }
+
+  const deleteTodo = () => {
+    
+  }
+
   return (
     <section className="section">
       <div className="sec1main">
         <div className="sec1bar">
-          <button className="sec1add">
+          <button className="sec1add" onClick={addTodo}>
             <div className="sec1icon">
               <Image
                 src="/Add.png"
@@ -41,10 +49,21 @@ function Section() {
         </div>
         <div className="sec1todo">
           {/* Your card component or element can go here */}
+          
         </div>
       </div>
       <div className="sec2">
-        <input type="text" id="topic" placeholder="New Additions" />
+      <div className="input">
+      <input type="text" id="topic" placeholder="New Additions" />
+        <button className="delete" onClick={deleteTodo}>
+        <Image
+              src="/delete.png"
+              alt="delete Button"
+              width={24}
+              height={24}
+            />
+        </button>
+      </div>
         <ReactQuill
           value={description}
           onChange={handleDescriptionChange}

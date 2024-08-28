@@ -39,8 +39,8 @@
 }
 
 /* Section CSS */
-.section{
-display: flex;
+.section {
+    display: flex;
 }
 
 .sec1main {
@@ -95,21 +95,57 @@ display: flex;
     cursor: pointer;
 }
 
-.sec2{
+.sec2 {
     width: 652px;
-height: 736px;
-gap: 0px;
-border-radius: 8px;
-border: 1px 0px 0px 0px;
-opacity: 0px;
-margin-left: 72px;
+    height: 736px;
+    gap: 0px;
+    border-radius: 8px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    margin-left: 72px;
 
 }
 
-.sec2>input{
- width: 545px;
-height: 54px;
-gap: 0px;
-opacity: 0px;
-border: none;
+.input {
+    display: flex;
+}
+
+.sec2 input {
+    width: 545px;
+    height: 54px;
+    gap: 0px;
+    opacity: 0px;
+    border: none;
+}
+
+.sec2 input[type="text"] {
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    padding: 10px 0;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+}
+
+.sec2 input[type="text"]::placeholder {
+    color: #000;
+    font-weight: bold;
+    font-size: 1.5rem;
+    opacity: 1;
+}
+
+.delete {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.ql-container {
+    border: none !important;
+}
+
+.ql-editor {
+    border: none !important;
+    box-shadow: none !important;
 }
