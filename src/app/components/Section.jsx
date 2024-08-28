@@ -10,14 +10,15 @@ function Section() {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [todos, setTodos] = useState([]); // To manage list of todos
+  const [selectTodo, setSelectTodo] = useState(null);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
+
   const handleDescriptionChange = (value) => {
     setDescription(value);
   };
-
 
   const addTodo = () => {
     if (title && description) {
@@ -28,7 +29,19 @@ function Section() {
   };
 
   const deleteTodo = () => {
-    // Add your delete logic here
+    if (selectTodo !== null) {
+      setTodos(todos.filter((index) => index !== selectTodo));
+      setSelectTodo(null); // Clear selection after deletion
+      setTitle(""); // Clear title
+      setDescription(""); // Clear description
+    }
+  };
+
+  const handleCardClick = (index) => {
+    const todo = todos[index];
+    setSelectTodo(index);
+    setTitle(todo.title);
+    setDescription(todo.description);
   };
 
   return (
@@ -57,7 +70,12 @@ function Section() {
         </div>
         <div className="sec1todo">
           {todos.map((todo, index) => (
-            <Card key={index} title={todo.title} description={todo.description}  />
+            <Card
+              key={index}
+              title={todo.title}
+              description={todo.description}
+              onClick={() => handleCardClick(index)}
+            />
           ))}
         </div>
       </div>
@@ -66,7 +84,7 @@ function Section() {
           <input
             type="text"
             id="topic"
-            placeholder="Add tittle"
+            placeholder="Add title"
             value={title}
             onChange={handleTitleChange}
           />
