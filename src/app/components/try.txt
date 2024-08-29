@@ -1,0 +1,106 @@
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  const [todoList, setTodoList] = useState([]);
+  const [isVisible, setIsVisible] = useState(true);
+  const [todo, setTodo] = useState({ title: '', description: '' });
+
+  const handleAdd = () => {
+    setIsVisible(!isVisible);
+    if (todo.title == '' || todo.description == "") {
+      return
+    }
+    setTodo({ title: '', description: '' });
+    setTodoList([...todoList, todo]);
+    console.log(todo);
+  }
+  const handleSelect
+const handleSelect = (i) => {
+    const theTodo = todoList[i];
+    setTodo({ title: theTodo.title, description: theTodo.description });
+  }
+  return (
+    <>
+      <main className='wrapper'>
+        <section className={`${isVisible ? "isVisible" : "notVisible"}`}>
+          <button onClick={handleAdd}>Add</button>
+          <ul>
+            {todoList.map((item, i) => {
+              return (
+                <li key={i}>
+                  <div onClick={() => handleSelect(i)}>
+{todoList.map((item, i) => {
+              return (
+                <li key={i}>
+                  <div onClick={() => handleSelect(i)}>
+                    {item.title}
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+        <section className={`${!isVisible ? "isVisible" : "notVisible"}`}>
+          <button className='mobile-back' onClick={() => setIsVisible(!isVisible)}>
+            back
+          </button>
+
+          <input
+            placeholder='Untitled note'
+            value={todo.title}
+            onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+          />
+          <br />
+          <textarea
+            placeholder='add the desc'
+            value={todo.description}
+            onChange={(e) => setTodo({ ...todo, description: e.target.value })}
+          />
+        </section>
+      </main>
+    </>
+  )
+}
+
+export default App
+
+*{
+    margin: 0;
+    padding: 0;
+  }
+  
+  body{
+    height: 100vh;
+  }
+  
+  .wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .wrapper > *{
+    border: 1px solid red;
+  }
+  
+  .mobile-back{
+    display: none;
+  }
+  
+  @media screen and (max-width: 600px){
+    .wrapper{
+      grid-template-columns: auto;
+    }
+    .wrapper > *{
+      display: none;
+    }
+    .isVisible{
+      display: block;
+    }
+    .notVisible{
+      display: none;
+    }
+    .mobile-back{
+      display: block;
+    }
+  }

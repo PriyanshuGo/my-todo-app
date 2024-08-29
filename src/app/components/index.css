@@ -43,7 +43,7 @@ opacity: 0px;
 .section {
     display: flex;
     background-color: rgb(237, 237, 237);
-}
+ }
 
 .sec1main {
     width: 401px;
@@ -154,3 +154,26 @@ opacity: 0px;
     border: none !important;
     box-shadow: none !important;
 }
+
+/* try css*/
+/* .mobile-back{
+    display: none;
+  }
+
+@media screen and (max-width: 600px){
+    .section{
+      grid-template-columns: auto;
+    }
+    .section > *{
+      display: none;
+    }
+    .isVisible{
+      display: block;
+    }
+    .notVisible{
+      display: none;
+    }
+    .mobile-back{
+      display: block;
+    }
+  } */

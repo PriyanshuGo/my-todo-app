@@ -1,10 +1,12 @@
 'use client'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from 'react-quill';
 import Card from "./Card"; 
+import axios from "axios";
+
 
 function Section() {
   const [description, setDescription] = useState("");
@@ -20,7 +22,7 @@ function Section() {
     setDescription(value);
   };
 
-  const addTodo = () => {
+  const addTodo = async () => {
     if (title && description) {
       if (selectTodo !== null) {
         const updatedTodos = todos.map((todo, index) =>
@@ -34,11 +36,22 @@ function Section() {
       setTitle(""); 
       setDescription(""); 
     }
+        // const todoData = {title,description}
+    // try {
+    //   const response =  await axios.post("/api/todo",todoData);
+    //   if (response) {
+    //     console.log("TOdo created seuccessfuflly",response);
+    //     setTitle('');
+    //     setDescription('');
+    //   }
+    // } catch (error) {
+    //   console.log(error , "post not created.")
+    // }
   };
 
   const deleteTodo = () => {
     if (selectTodo !== null) {
-      setTodos(todos.filter((index) => index !== selectTodo));
+      setTodos(todos.filter((el,index) => index !== selectTodo));
       setSelectTodo(null); 
       setTitle(""); 
       setDescription(""); 
@@ -52,11 +65,23 @@ function Section() {
     setDescription(todo.description);
   };
 
+  // useEffect(async function fetchTodos(){
+  //   try {
+  //     const response =  await axios.get("/api/todo");
+  //     if (response) {
+  //       console.log(" seuccessfuflly",response);
+  //       setTodos(response.data)
+  //     }
+  //   } catch (error) {
+  //     console.log(error , "error ijn fetching.")
+  //   }
+  // },[])
+
   return (
     <section className="section">
       <div className="sec1main">
         <div className="sec1bar">
-          <button className="sec1add" onClick={addTodo}>
+          <button className="sec1add" onClick={addTodo} >
             <div className="sec1icon">
               <Image
                 src="/Add.png"
