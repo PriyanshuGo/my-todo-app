@@ -7,7 +7,7 @@ const Card = ({ title, description, onClick ,key}) => {
   return (
     <div className="card" onClick={onClick}>
       <h1 className="card-title">{title}</h1>
-      <p className="card-description"> {parse(description.slice(0,15))}</p>
+      <p className="card-description"> {parse(description)}</p>
       <p>{key}</p>
     </div>
   );

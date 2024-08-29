@@ -65,7 +65,7 @@ function Section() {
                 height={20}
               />
             </div>
-            <div className="sec1text">{selectTodo !== null ? 'Update' : 'Add'} </div>
+            <div className="sec1text">{selectTodo !== null ? 'Update' : 'TODO'} </div>
           </button>
           <button className="sec1search">
             <Image
@@ -105,7 +105,7 @@ function Section() {
             />
           </button>
         </div>
-        <ReactQuill
+        <ReactQuill className="richText"
           value={description}
           onChange={handleDescriptionChange}
           placeholder="Write your description here."
