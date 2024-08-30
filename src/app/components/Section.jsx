@@ -128,7 +128,7 @@ function Section() {
           ))}
         </div>
       </div>
-      {!isMobile &&
+      {/* {!isMobile && */}
       <div className="sec2">
         <div className="input">
           <input
@@ -153,7 +153,7 @@ function Section() {
           placeholder="Write your description here."
         />
       </div>
-}
+{/* } */}
     </section>
   );
 }
