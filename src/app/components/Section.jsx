@@ -13,21 +13,21 @@ function Section() {
   const [title, setTitle] = useState("");
   const [todos, setTodos] = useState([]); 
   const [selectTodo, setSelectTodo] = useState(null); 
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
+  // const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 480);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(window.innerWidth < 480);
+  //   };
 
-    // Add event listener for resize
-    window.addEventListener('resize', handleResize);
+  //   // Add event listener for resize
+  //   window.addEventListener('resize', handleResize);
 
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   // Cleanup event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
