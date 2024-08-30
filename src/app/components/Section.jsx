@@ -1,12 +1,10 @@
 'use client'
-// import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from "react";
 import "./index.css";
 import Image from "next/image";
 import "react-quill/dist/quill.snow.css";
-// const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import Card from "./Card"; 
-import axios from "axios";
+import ReactQuill from 'react-quill';
 
 
 function Section() {
@@ -34,8 +32,8 @@ function Section() {
     setTitle(event.target.value);
   };
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
+  const handleDescriptionChange = (value) => {
+    setDescription(value);
   };
 
   const addTodo = async () => {
@@ -147,16 +145,12 @@ function Section() {
             />
           </button>
         </div>
-       <textarea name="" id=""
-        value={description}
-        onChange={handleDescriptionChange}
-        placeholder="Write your description here."
-       ></textarea>
-        {/* <ReactQuill className="richText"
+
+        <ReactQuill className="richText"
           value={description}
           onChange={handleDescriptionChange}
           placeholder="Write your description here."
-        /> */}
+        />
       </div>
 {/* } */}
     </section>
